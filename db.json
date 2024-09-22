@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "name": "Vipin",
+      "email": "vipin@gmail.com",
+      "password": "admin",
+      "id": 1
+    },
+    {
+      "name": "Vipin",
+      "email": "vipin@gmail.com",
+      "password": "admins",
+      "id": 2
+    },
+    {
+      "name": "Gunjan",
+      "email": "gunjan@gmail.com",
+      "password": "admin",
+      "id": 3
+    },
+    {
+      "name": "Vipin Kumar",
+      "email": "vipink28@gmail.com",
+      "password": "admin",
+      "id": 4
+    },
+    {
+      "name": "Vibha",
+      "email": "vibha@gmail.com",
+      "password": "admin",
+      "id": 5
+    },
+    {
+      "name": "Neeraj",
+      "email": "neeraj@gmail.com",
+      "password": "admin",
+      "id": 6
+    }
+  ],
+  "tasks": []
+}

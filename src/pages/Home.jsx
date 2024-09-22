@@ -1,7 +1,6 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import illustration from '../assets/illustration.png';
-import { Link } from 'react-router-dom';
-import Login from '../auth/Login';
 
 function Home(props) {
     return (
@@ -22,7 +21,7 @@ function Home(props) {
                         <Link className='w-1/2 text-center py-3' to="/register">Register</Link>
                     </div>
                     <div className='p-5'>
-                        <Login />
+                        <Outlet />
                     </div>
                 </div>
             </div>
