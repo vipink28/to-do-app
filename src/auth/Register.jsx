@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import AuthContext from './AuthContext';
 
 function Register(props) {
+    const { register } = useContext(AuthContext);
     const [formData, setFormData] = useState(null);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -13,34 +14,9 @@ function Register(props) {
         })
     }
 
-    const navigate = useNavigate();
-
-    const handleSubmit = async () => {
-        // fetch()
-        const config = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        }
-
-        const checkUser = await fetch(`http://localhost:5000/users?email=${formData.email}`, { method: "GET" });
-        const users = await checkUser.json();
-        if (users.length > 0) {
-            alert("user already exist, please login");
-        } else {
-            const response = await fetch("http://localhost:5000/users", config);
-            if (response.status === 201) {
-                const user = await response.json();
-                localStorage.setItem("todoUser", JSON.stringify(user));
-                navigate("/task-list");
-            } else {
-                alert("Something went wrong");
-            }
-        }
+    const handleSubmit = () => {
+        register(formData);
     }
-
 
     return (
         <div className='flex flex-col gap-5'>

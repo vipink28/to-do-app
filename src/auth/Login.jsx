@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import AuthContext from './AuthContext';
 
 function Login(props) {
-
+    const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState(null);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -14,18 +14,10 @@ function Login(props) {
         })
     }
 
-    const navigate = useNavigate();
-
-    const handleSubmit = async () => {
-        const response = await fetch(`http://localhost:5000/users?email=${formData.email}&password=${formData.password}`, { method: "GET" });
-        const users = await response.json();
-        if (users.length > 0) {
-            localStorage.setItem("todoUser", JSON.stringify(users[0]));
-            navigate("/task-list")
-        } else {
-            alert("email/password incorrect");
-        }
+    const handleSubmit = () => {
+        login(formData);
     }
+
 
     return (
         <div className='flex flex-col gap-5'>
