@@ -37,5 +37,30 @@
       "id": 6
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "title": "Meeting",
+      "userid": 1,
+      "modifiedon": "Sat Oct 19 2024 19:44:41 GMT+0530 (India Standard Time)",
+      "description": "Meeting with client",
+      "duedate": "2024-10-27T23:44",
+      "id": 1
+    },
+    {
+      "title": "Electricity Bill",
+      "userid": 1,
+      "modifiedon": "Sat Oct 19 2024 20:14:23 GMT+0530 (India Standard Time)",
+      "description": "Pay Electricity bill",
+      "duedate": "2024-10-20T00:14",
+      "id": 2
+    },
+    {
+      "title": "Grocery",
+      "userid": 1,
+      "modifiedon": "Sat Oct 19 2024 20:16:41 GMT+0530 (India Standard Time)",
+      "description": "Buy groceries for home.",
+      "duedate": "2024-10-23T00:16",
+      "id": 3
+    }
+  ]
 }
