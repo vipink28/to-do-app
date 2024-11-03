@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../auth/AuthContext';
 import TaskContext from '../context/TaskContext';
 
-function TaskForm({ isUdpdate, setIsUpdate, data }) {
+function TaskForm({ isUdpdate, setIsUpdate, data, isPopup, setIsPopup }) {
     const init = {
         title: "",
         description: "",
@@ -19,7 +19,7 @@ function TaskForm({ isUdpdate, setIsUpdate, data }) {
                 ...prev,
                 [name]: value,
                 userid: user.id,
-                modifiedon: Date()
+                modifiedon: Date(),
             }
         })
     }
@@ -37,8 +37,12 @@ function TaskForm({ isUdpdate, setIsUpdate, data }) {
     }
 
     const handleCancel = () => {
-        setIsUpdate(false);
-        setFormData(init);
+        if (!isPopup) {
+            setIsUpdate(false);
+            setFormData(init);
+        } else {
+            setIsPopup(false);
+        }
     }
     const handleUpate = () => {
         updateTask(formData);
@@ -47,7 +51,7 @@ function TaskForm({ isUdpdate, setIsUpdate, data }) {
     return (
         <div className='p-4'>
             <h3 className='text-white'>{isUdpdate ? "Update Task" : "Create Task"}</h3>
-            <div className='p-5 bg-white'>
+            <div className='p-5 bg-white text-slate-950'>
                 <div className='flex flex-col gap-3 mb-3'>
                     <label>Title</label>
                     <input type='text' name='title' className='p-1 border border-gray-200 rounded-sm w-full inline-block' value={formData.title} onChange={handleChange} />

@@ -34,7 +34,6 @@ export const TaskProvider = ({ children }) => {
     }
 
     //udpate task
-
     const updateTask = async (formData) => {
         const config = {
             method: "PATCH",
@@ -48,6 +47,21 @@ export const TaskProvider = ({ children }) => {
             const response = await fetch(`http://localhost:5001/tasks/${formData.id}`, config);
             if (response.status === 200) {
                 alert("Task Updated successfully");
+                getAllTasks(user.id);
+            } else {
+                alert("Something went wrong");
+            }
+        } catch (error) {
+            alert("something went wrong");
+        }
+    }
+
+    const deleteTask = async (id) => {
+
+        try {
+            const response = await fetch(`http://localhost:5001/tasks/${id}`, { method: "DELETE" });
+            if (response.status === 200) {
+                alert("Task deleted successfully");
                 getAllTasks(user.id);
             } else {
                 alert("Something went wrong");
@@ -88,7 +102,8 @@ export const TaskProvider = ({ children }) => {
             allTasks,
             recentTasks,
             latestTask,
-            updateTask
+            updateTask,
+            deleteTask
         }}>
             {children}
         </TaskContext.Provider>
