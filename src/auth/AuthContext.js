@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
     //login
     const login = async (formData) => {
-        const response = await fetch(`http://localhost:5000/users?email=${formData.email}&password=${formData.password}`, { method: "GET" });
+        const response = await fetch(`http://localhost:5001/users?email=${formData.email}&password=${formData.password}`, { method: "GET" });
         const users = await response.json();
         if (users.length > 0) {
             localStorage.setItem("todoUser", JSON.stringify(users[0]));
@@ -34,12 +34,12 @@ export const AuthProvider = ({ children }) => {
             body: JSON.stringify(formData)
         }
 
-        const checkUser = await fetch(`http://localhost:5000/users?email=${formData.email}`, { method: "GET" });
+        const checkUser = await fetch(`http://localhost:5001/users?email=${formData.email}`, { method: "GET" });
         const users = await checkUser.json();
         if (users.length > 0) {
             alert("user already exist, please login");
         } else {
-            const response = await fetch("http://localhost:5000/users", config);
+            const response = await fetch("http://localhost:5001/users", config);
             if (response.status === 201) {
                 const user = await response.json();
                 localStorage.setItem("todoUser", JSON.stringify(user));
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const getUserFromDatabase = async (email) => {
-        const response = await fetch(`http://localhost:5000/users?email=${email}`);
+        const response = await fetch(`http://localhost:5001/users?email=${email}`);
         if (response.ok) {
             const user = await response.json();
             if (user.length > 0) {

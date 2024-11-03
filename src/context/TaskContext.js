@@ -21,9 +21,33 @@ export const TaskProvider = ({ children }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/tasks`, config);
+            const response = await fetch(`http://localhost:5001/tasks`, config);
             if (response.status === 201) {
                 alert("Task added successfully");
+                getAllTasks(user.id);
+            } else {
+                alert("Something went wrong");
+            }
+        } catch (error) {
+            alert("something went wrong");
+        }
+    }
+
+    //udpate task
+
+    const updateTask = async (formData) => {
+        const config = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+
+        try {
+            const response = await fetch(`http://localhost:5001/tasks/${formData.id}`, config);
+            if (response.status === 200) {
+                alert("Task Updated successfully");
                 getAllTasks(user.id);
             } else {
                 alert("Something went wrong");
@@ -36,7 +60,7 @@ export const TaskProvider = ({ children }) => {
 
     const getAllTasks = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/tasks?userid=${id}`, { method: "GET" });
+            const response = await fetch(`http://localhost:5001/tasks?userid=${id}`, { method: "GET" });
             if (response.ok) {
                 const tasks = await response.json();
                 setAllTasks(tasks);
@@ -63,7 +87,8 @@ export const TaskProvider = ({ children }) => {
             addTask,
             allTasks,
             recentTasks,
-            latestTask
+            latestTask,
+            updateTask
         }}>
             {children}
         </TaskContext.Provider>

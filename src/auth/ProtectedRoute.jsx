@@ -6,7 +6,7 @@ function ProtectedRoute({ children }) {
     const navigate = useNavigate();
 
     const getUserFromDatabase = async (email) => {
-        const response = await fetch(`http://localhost:5000/users?email=${email}`);
+        const response = await fetch(`http://localhost:5001/users?email=${email}`);
         if (response.ok) {
             const user = await response.json();
             if (user.length > 0) {
